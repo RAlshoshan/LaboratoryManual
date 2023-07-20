@@ -1,0 +1,91 @@
+﻿@model IEnumerable<LabM.Models.Request>
+@{
+}
+<a class="btn btn-info text-white" asp-action="Configuration">System Config</a>
+<div>
+    <div class="row mt-3">
+        <h5 class="rounded text-center text-white p-2 bg-info">Request List</h5>
+    </div>
+    <div class="row p-3 my-2 border">
+        <div class="col-2 ">
+            <select class="form-select">
+                <option>College</option>
+                <option value="1">الطب البشري ( المقر الرئيسي)</option>
+                <option value="2">الطب والعلوم الطبية ( القطاع الجنوبي )</option>
+                <option value="3">طب الأسنان ( القطاع الغربي )</option>
+                <option value="4">طب الأسنان ( المقر الرئيسي) </option>
+                <option value="5">الصيدلة ( المقر الرئيسي )</option>
+                <option value="6">الصيدلة ( المقر الجنوبي )</option>
+                <option value="7">العلوم الطبية التطبيقية</option>
+                <option value="8">البصريات</option>
+                <option value="9">التمريض</option>
+                <option value="10">التأهيل الطبي</option>
+                <option value="11">العلوم الصحية</option>
+                <option value="12">الصحة العامة والمعلوماتية</option>
+                <option value="13">كلية الزراعة</option>
+            </select>
+        </div>
+        <div class="col-2">
+            <input type="text" class="form-control" id="CollegeNameSearch" name="CollegeNameSearch" placeholder="College Name Search">
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-info text-white form-control ">Extract</button>
+        </div>
+        <div class="col-3">
+            <p class="text-danger">Extract all or as per search results</p>
+        </div>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Request Number
+            </th>
+            <th>
+                Student Name
+            </th>
+            <th>
+                National/ Residence Id
+            </th>
+            <th>
+                University Number
+            </th>
+            <th>
+                Students Status
+            </th>
+            <th>
+                Request Submission Date
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstNameEnglish)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NationalOrResidenceId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UniversityNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentsStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
