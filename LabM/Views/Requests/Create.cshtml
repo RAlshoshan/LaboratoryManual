@@ -1,162 +1,160 @@
 ﻿@model LabM.Models.Request
 @{
-
 }
 <div>
     <h5 class="rounded text-center text-white p-2 bg-info" data-i18n="textTitle1">Students and Interns Screening Application Form</h5>
 </div>
-        <form asp-action="Create">
-            <div class="row">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group col">
-                    <label asp-for="NationalOrResidenceId" class="control-label"></label>
-                    <input asp-for="NationalOrResidenceId" class="form-control" />
-                    <span asp-validation-for="NationalOrResidenceId" class="text-danger"></span>
-                </div>
-                <div class="form-group col">
-                    <label asp-for="UniversityNumber" class="control-label"></label>
-                    <input asp-for="UniversityNumber" class="form-control" />
-                    <span asp-validation-for="UniversityNumber" class="text-danger"></span>
-                </div>
-                <div class="form-group col">
-                    <label asp-for="StudentsStatus" class="control-label"></label>
-                    <select asp-for="StudentsStatus" class="form-select">
-                        <option>select</option>
-                        <option value="NewStudent">New Student</option>
-                        <option value="Intern">Intern</option>
-                    </select>
-                    <span asp-validation-for="StudentsStatus" class="text-danger"></span>
-                </div>
-                <div class="form-group col">
-                    <label asp-for="College" class="control-label"></label>
-                    <select asp-for="College" class="form-select">
-                        <option>select</option>
-                        <option value="1">الطب البشري ( المقر الرئيسي)</option>
-                        <option value="2">الطب والعلوم الطبية ( القطاع الجنوبي )</option>
-                        <option value="3">طب الأسنان ( القطاع الغربي )</option>
-                        <option value="4">طب الأسنان ( المقر الرئيسي) </option>
-                        <option value="5">الصيدلة ( المقر الرئيسي )</option>
-                        <option value="6">الصيدلة ( المقر الجنوبي )</option>
-                        <option value="7">العلوم الطبية التطبيقية</option>
-                        <option value="8">البصريات</option>
-                        <option value="9">التمريض</option>
-                        <option value="10">التأهيل الطبي</option>
-                        <option value="11">العلوم الصحية</option>
-                        <option value="12">الصحة العامة والمعلوماتية</option>
-                        <option value="13">كلية الزراعة</option>
-                    </select>
-                    <span asp-validation-for="College" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col">
-                    <label asp-for="FirstNameEnglish" class="control-label"></label>
-                    <input asp-for="FirstNameEnglish" class="form-control" />
-                    <span asp-validation-for="FirstNameEnglish" class="text-danger"></span>
-                </div>
-                <div class="form-group col">
-                    <label asp-for="FatherNameEnglish" class="control-label"></label>
-                    <input asp-for="FatherNameEnglish" class="form-control" />
-                    <span asp-validation-for="FatherNameEnglish" class="text-danger"></span>
-                </div>
-                 <div class="form-group col">
-                    <label asp-for="GrandFatherNameEnglish" class="control-label"></label>
-                    <input asp-for="GrandFatherNameEnglish" class="form-control" />
-                    <span asp-validation-for="GrandFatherNameEnglish" class="text-danger"></span>
-                </div>
-                <div class="form-group col">
-                    <label asp-for="FamilyNameEnglish" class="control-label"></label>
-                    <input asp-for="FamilyNameEnglish" class="form-control" />
-                    <span asp-validation-for="FamilyNameEnglish" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col">
-                    <label asp-for="FirstNameArabic" class="control-label"></label>
-                    <input asp-for="FirstNameArabic" class="form-control" />
-                    <span asp-validation-for="FirstNameArabic" class="text-danger"></span>
-                </div>
-                <div class="form-group col">
-                    <label asp-for="FatherNameArabic" class="control-label"></label>
-                    <input asp-for="FatherNameArabic" class="form-control" />
-                    <span asp-validation-for="FatherNameArabic" class="text-danger"></span>
-                </div>
-                <div class="form-group col">
-                    <label asp-for="GrandFatherNameArabic" class="control-label"></label>
-                    <input asp-for="GrandFatherNameArabic" class="form-control" />
-                    <span asp-validation-for="GrandFatherNameArabic" class="text-danger"></span>
-                </div>
-                <div class="form-group col">
-                    <label asp-for="FamilyNameArabic" class="control-label"></label>
-                    <input asp-for="FamilyNameArabic" class="form-control" />
-                    <span asp-validation-for="FamilyNameArabic" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col">
-                    <label asp-for="Email" class="control-label"></label>
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
-                <div class="form-group col">
-                    <label asp-for="PhoneNo" class="control-label"></label>
-                    <input asp-for="PhoneNo" class="form-control" />
-                    <span asp-validation-for="PhoneNo" class="text-danger"></span>
-                </div>
-                     <div class="form-group col">
-                    <label asp-for="BirthDate" class="control-label"></label>
-                    <input asp-for="BirthDate" class="form-control" />
-                    <span asp-validation-for="BirthDate" class="text-danger"></span>
-                </div>
-                     <div class="form-group col">
-                    <label asp-for="MedicalFileNo" class="control-label"></label>
-                    <input asp-for="MedicalFileNo" class="form-control" />
-                    <span asp-validation-for="MedicalFileNo" class="text-danger"></span>
-               </div>
-            </div>
-            <div class="row mt-3">
-                <li class="text-danger fw-bold" data-i18n="textQUStudentFile">In case the student id is not available, please attach a copy of Qassim University student file</li>
-            </div>
-        <hr />
-        <div class="row">
-            <h5 class="text-info" data-i18n="tesxtSelectDate">Kindly select a suitable date and time for the needed tests.</h5>
+<form asp-action="Create">
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group col">
+            <label asp-for="NationalOrResidenceId" class="control-label"></label>
+            <input asp-for="NationalOrResidenceId" class="form-control" />
+            <span asp-validation-for="NationalOrResidenceId" class="text-danger"></span>
         </div>
-             <div class="row">
-                <div class="form-group col">
-                    <label asp-for="Date" class="control-label"></label>
-                    <input asp-for="Date" class="form-control" />
-                    <span asp-validation-for="Date" class="text-danger"></span>
-                </div>
-             </div>
-            <div class="row mt-3">
-                <div class="col form-check">
-                    <input class="form-check-input" type="checkbox" id="check1DeclareData" name="check1DeclareData" value="12345">
-                    <label class="form-check-label" data-i18n="textDeclareData">I declare that the above-mentioned data is accurate and filled out by me personally</label>
-                </div>
-            </div>
-        <hr />
-            <div class="row">
-                <div class="col">
-                    <h5 class="text-danger fw-bold" data-i18n="textImportantNotes">Important Notes</h5>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col mt-3">
-                <ul class="text-info">
-                        <li data-i18n="textImportantNotes1">Lab is open from 8:00 AM till 1:00 PM</li>
-                        <li data-i18n="textImportantNotes2">Students that did not submit a request through the portal will not be accepted</li>
-                        <li data-i18n="textImportantNotes3">Blood resulted within 14 working days, kindly bring the approved university/institution tests' form to be filled out.</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <input type="submit" value="submit" class="btn btn-primary" />
-                </div>
-             </div>
-        </form>
+        <div class="form-group col">
+            <label asp-for="UniversityNumber" class="control-label"></label>
+            <input asp-for="UniversityNumber" class="form-control" />
+            <span asp-validation-for="UniversityNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group col">
+            <label asp-for="StudentsStatus" class="control-label"></label>
+            <select asp-for="StudentsStatus" class="form-select">
+                <option>select</option>
+                <option value="NewStudent">New Student</option>
+                <option value="Intern">Intern</option>
+            </select>
+            <span asp-validation-for="StudentsStatus" class="text-danger"></span>
+        </div>
+        <div class="form-group col">
+            <label asp-for="College" class="control-label"></label>
+            <select asp-for="College" class="form-select">
+                <option></option>
+                <option>الطب البشري ( المقر الرئيسي)</option>
+                <option>الطب والعلوم الطبية ( القطاع الجنوبي )</option>
+                <option>طب الأسنان ( القطاع الغربي )</option>
+                <option>طب الأسنان ( المقر الرئيسي) </option>
+                <option>الصيدلة ( المقر الرئيسي )</option>
+                <option>الصيدلة ( المقر الجنوبي )</option>
+                <option>العلوم الطبية التطبيقية</option>
+                <option>البصريات</option>
+                <option>التمريض</option>
+                <option>التأهيل الطبي</option>
+                <option>العلوم الصحية</option>
+                <option>الصحة العامة والمعلوماتية</option>
+                <option>كلية الزراعة</option>
+            </select>
+            <span asp-validation-for="College" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col">
+            <label asp-for="FirstNameEnglish" class="control-label"></label>
+            <input asp-for="FirstNameEnglish" class="form-control" />
+            <span asp-validation-for="FirstNameEnglish" class="text-danger"></span>
+        </div>
+        <div class="form-group col">
+            <label asp-for="FatherNameEnglish" class="control-label"></label>
+            <input asp-for="FatherNameEnglish" class="form-control" />
+            <span asp-validation-for="FatherNameEnglish" class="text-danger"></span>
+        </div>
+        <div class="form-group col">
+            <label asp-for="GrandFatherNameEnglish" class="control-label"></label>
+            <input asp-for="GrandFatherNameEnglish" class="form-control" />
+            <span asp-validation-for="GrandFatherNameEnglish" class="text-danger"></span>
+        </div>
+        <div class="form-group col">
+            <label asp-for="FamilyNameEnglish" class="control-label"></label>
+            <input asp-for="FamilyNameEnglish" class="form-control" />
+            <span asp-validation-for="FamilyNameEnglish" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col">
+            <label asp-for="FirstNameArabic" class="control-label"></label>
+            <input asp-for="FirstNameArabic" class="form-control" />
+            <span asp-validation-for="FirstNameArabic" class="text-danger"></span>
+        </div>
+        <div class="form-group col">
+            <label asp-for="FatherNameArabic" class="control-label"></label>
+            <input asp-for="FatherNameArabic" class="form-control" />
+            <span asp-validation-for="FatherNameArabic" class="text-danger"></span>
+        </div>
+        <div class="form-group col">
+            <label asp-for="GrandFatherNameArabic" class="control-label"></label>
+            <input asp-for="GrandFatherNameArabic" class="form-control" />
+            <span asp-validation-for="GrandFatherNameArabic" class="text-danger"></span>
+        </div>
+        <div class="form-group col">
+            <label asp-for="FamilyNameArabic" class="control-label"></label>
+            <input asp-for="FamilyNameArabic" class="form-control" />
+            <span asp-validation-for="FamilyNameArabic" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group col">
+            <label asp-for="PhoneNo" class="control-label"></label>
+            <input asp-for="PhoneNo" class="form-control" placeholder="05xxxxxxxx"/>
+            <span asp-validation-for="PhoneNo" class="text-danger"></span>
+        </div>
+        <div class="form-group col">
+            <label asp-for="BirthDate" class="control-label"></label>
+            <input asp-for="BirthDate" class="form-control" />
+            <span asp-validation-for="BirthDate" class="text-danger"></span>
+        </div>
+        <div class="form-group col">
+            <label asp-for="MedicalFileNo" class="control-label"></label>
+            <input asp-for="MedicalFileNo" class="form-control" />
+            <span asp-validation-for="MedicalFileNo" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <li class="text-danger fw-bold" data-i18n="textQUStudentFile">In case the student id is not available, please attach a copy of Qassim University student file</li>
+    </div>
+    <hr />
+    <div class="row">
+        <h5 class="text-info" data-i18n="tesxtSelectDate">Kindly select a suitable date and time for the needed tests.</h5>
+    </div>
+    <div class="row">
+        <div class="form-group col">
+            <label asp-for="Date" class="control-label"></label>
+            <input asp-for="Date" class="form-control" />
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col form-check">
+            <input class="form-check-input" type="checkbox" id="check1DeclareData" name="check1DeclareData" value="12345" required>
+            <label class="form-check-label">I declare that the above-mentioned data is accurate and filled out by me personally</label>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <h5 class="text-danger fw-bold">Important Notes</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mt-3">
+            <ul class="text-info">
+                <li>Lab is open from 8:00 AM till 1:00 PM</li>
+                <li>Students that did not submit a request through the portal will not be accepted</li>
+                <li>Blood resulted within 14 working days, kindly bring the approved university/institution tests' form to be filled out.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <input type="submit" value="submit" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
 <div>
-    <a asp-action="Index">Back to List</a>
 </div>
 @section Scripts {
     @{

@@ -1,22 +1,21 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@model int
+﻿@model int
 @{
 }
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div class="form-group">
-                <label class="control-label">Limitation Days</label>
-                <input name="limitationDays" class="form-control" value="@Model" />
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+<div>
+    <h5 class="text-center text-white rounded p-2 bg-info">System Configuration</h5>
+</div>
+
+<div class="row border p-2 m-1">
+    <form asp-action="Edit">
+        <div class="form-group col-3">
+            <label class="control-label">Limitation Days</label>
+            <input name="limitationDays" class="form-control" value="@Model" />
+        </div>
+        <div class="form-group col">
+            <input type="submit" value="Save" class="btn btn-primary float-end" />
+        </div>
+    </form>
 </div>
 <div>
-    <a asp-action="/Home/Index">Back</a>
+    <a asp-controller="Home" asp-action="Index">Back To List</a>
 </div>

@@ -1,32 +1,40 @@
 ﻿@model IEnumerable<LabM.Models.Request>
 @{
 }
-<a class="btn btn-info text-white" asp-action="Configuration">System Config</a>
-<div>
+<a class="btn btn-info text-white" asp-controller="Managements" asp-action="Edit">System Config</a>
+<form method="get" asp-action="index">
     <div class="row mt-3">
         <h5 class="rounded text-center text-white p-2 bg-info">Request List</h5>
     </div>
     <div class="row p-3 my-2 border">
         <div class="col-2 ">
-            <select class="form-select">
-                <option>College</option>
-                <option value="1">الطب البشري ( المقر الرئيسي)</option>
-                <option value="2">الطب والعلوم الطبية ( القطاع الجنوبي )</option>
-                <option value="3">طب الأسنان ( القطاع الغربي )</option>
-                <option value="4">طب الأسنان ( المقر الرئيسي) </option>
-                <option value="5">الصيدلة ( المقر الرئيسي )</option>
-                <option value="6">الصيدلة ( المقر الجنوبي )</option>
-                <option value="7">العلوم الطبية التطبيقية</option>
-                <option value="8">البصريات</option>
-                <option value="9">التمريض</option>
-                <option value="10">التأهيل الطبي</option>
-                <option value="11">العلوم الصحية</option>
-                <option value="12">الصحة العامة والمعلوماتية</option>
-                <option value="13">كلية الزراعة</option>
+            <select name="College" class="form-select">
+                <option></option>
+                <option>الطب البشري ( المقر الرئيسي)</option>
+                <option>الطب والعلوم الطبية ( القطاع الجنوبي )</option>
+                <option>طب الأسنان ( القطاع الغربي )</option>
+                <option>طب الأسنان ( المقر الرئيسي) </option>
+                <option>الصيدلة ( المقر الرئيسي )</option>
+                <option>الصيدلة ( المقر الجنوبي )</option>
+                <option>العلوم الطبية التطبيقية</option>
+                <option>البصريات</option>
+                <option>التمريض</option>
+                <option>التأهيل الطبي</option>
+                <option>العلوم الصحية</option>
+                <option>الصحة العامة والمعلوماتية</option>
+                <option>كلية الزراعة</option>
             </select>
         </div>
         <div class="col-2">
-            <input type="text" class="form-control" id="CollegeNameSearch" name="CollegeNameSearch" placeholder="College Name Search">
+            <select name="StudentsStatus" class="form-select">
+                <option></option>
+                <option value="NewStudent">New Student</option>
+                <option value="Intern">Intern</option>
+            </select>
+        </div>
+        <div class="col-2">
+            <input type="submit" value="search" class="btn btn-info text-white form-control" />
+            <!-- <input type="search" class="form-control" name="CollegeNameSearch" placeholder="College Name Search"> -->
         </div>
         <div class="col-2">
             <button type="button" class="btn btn-info text-white form-control ">Extract</button>
@@ -35,7 +43,7 @@
             <p class="text-danger">Extract all or as per search results</p>
         </div>
     </div>
-</div>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -57,6 +65,9 @@
             <th>
                 Request Submission Date
             </th>
+            <th>
+                College
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -69,6 +80,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.FirstNameEnglish)
+                    @Html.DisplayFor(modelItem => item.FatherNameEnglish)
+                    @Html.DisplayFor(modelItem => item.GrandFatherNameEnglish)
+                    @Html.DisplayFor(modelItem => item.FamilyNameEnglish)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.NationalOrResidenceId)
@@ -81,6 +95,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.College)
                 </td>
                 <td>
                     <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a>

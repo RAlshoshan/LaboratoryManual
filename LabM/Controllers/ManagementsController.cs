@@ -21,7 +21,7 @@ namespace LabM.Controllers
         public IActionResult Edit(int? id)
         {
             var limitationCountResult = _context.Management.Where(x => x.Name == "limitationDays").FirstOrDefault();
-            return View(limitationCountResult==null?0:limitationCountResult.Value);
+            return View(limitationCountResult == null ? 0 : limitationCountResult.Value);
         }
         // POST
         [HttpPost]
@@ -29,7 +29,8 @@ namespace LabM.Controllers
         public async Task<IActionResult> Edit(int limitationDays)
         {
             var limitationDaysObject = _context.Management.Where(x => x.Name == "limitationDays").FirstOrDefault();
-            if (limitationDaysObject==null) {
+            if (limitationDaysObject == null)
+            {
                 limitationDaysObject = new Management();
                 limitationDaysObject.Name = "limitationDays";
                 limitationDaysObject.Value = limitationDays;
@@ -40,6 +41,7 @@ namespace LabM.Controllers
                 limitationDaysObject.Value = limitationDays;
             }
             _context.SaveChanges();
+            //return RedirectToAction(nameof(Index),"Requests" );
             return View(limitationDays);
         }
     }
