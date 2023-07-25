@@ -32,6 +32,29 @@ namespace LabM.Controllers
         //GET
         public IActionResult Create()
         {
+            var managemnt = _context.Management.Where(x => x.Name == "limitationDays").FirstOrDefault();
+            if (managemnt is null)
+            {
+                ViewBag.ErrorMessage = "You Need To Set The Limit In Management";
+                return View();
+            }
+            var limitDays = managemnt.Value;
+            var dateTo = DateTime.Now.AddDays(30);
+            List<DateTime> avilableDates = new List<DateTime>();
+            for (var date = DateTime.Now; date <= dateTo; date = date.AddDays(1))
+            {
+                if(date.DayOfWeek.ToString() == "Friday" ||  date.DayOfWeek.ToString() == "Saturday")
+                {
+                    continue;
+                }
+                var requestsCount = _context.Request.Where(x => x.Date.Date == date.Date).Count();
+                if (requestsCount >= limitDays)
+                {
+                    continue;
+                }
+                avilableDates.Add(date);
+            }
+            ViewBag.AvilableDates = avilableDates;
             return View();
         }
         // POST
@@ -39,6 +62,19 @@ namespace LabM.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,NationalOrResidenceId,UniversityNumber,StudentsStatus,College,FirstNameEnglish,FatherNameEnglish,GrandFatherNameEnglish,FamilyNameEnglish,FirstNameArabic,FatherNameArabic,GrandFatherNameArabic,FamilyNameArabic,Email,PhoneNo,BirthDate,MedicalFileNo,Date")] Request request)
         {
+            var managemnt = _context.Management.Where(x => x.Name == "limitationDays").FirstOrDefault();
+            if (managemnt is null)
+            {
+                ViewBag.ErrorMessage = "You Need To Set The Limit In Management";
+                return View();
+            }
+            var limitDays = managemnt.Value;
+            var requestsCount = _context.Request.Where(x => x.Date == request.Date).Count();
+            if(requestsCount >= limitDays)
+            {
+                ViewBag.ErrorMessage = "Sorry, The Limit Of Request For This Day Is Reached";
+                return View();
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(request);
