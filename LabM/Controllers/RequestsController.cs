@@ -52,7 +52,7 @@ namespace LabM.Controllers
                 {
                     continue;
                 }
-                avilableDates.Add(date);
+                 avilableDates.Add(date);
             }
             ViewBag.AvilableDates = avilableDates;
             return View();

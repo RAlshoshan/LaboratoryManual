@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using LabM.Models;
 using LabM.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LabM.Controllers
 {
@@ -18,6 +19,7 @@ namespace LabM.Controllers
         }
         */
         // GET
+        [Authorize(Roles ="Admin")]
         public IActionResult Edit(int? id)
         {
             var limitationCountResult = _context.Management.Where(x => x.Name == "limitationDays").FirstOrDefault();
