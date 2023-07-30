@@ -2,6 +2,8 @@
 using LabM.Models;
 using LabM.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace LabM.Controllers
 {
@@ -12,6 +14,7 @@ namespace LabM.Controllers
         {
             _context = context;
         }
+        [Authorize(Roles = "Admin, Recep")]
         public async Task< IActionResult> Index(string? college, string? studentsStatus)
         {
             if (!string.IsNullOrEmpty(college) && !string.IsNullOrEmpty(studentsStatus))

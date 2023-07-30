@@ -2,24 +2,22 @@
 using LabM.Models;
 using LabM.Data;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace LabM.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ManagementsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        public ManagementsController(ApplicationDbContext context)
+        private readonly UserManager<IdentityUser> _userManager;
+       // private readonly RoleManager<IdentityRole> _roleManager;
+        public ManagementsController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
-        /*
-        public IActionResult Index()
-        {
-            return View();
-        }
-        */
         // GET
-        [Authorize(Roles ="Admin")]
         public IActionResult Edit(int? id)
         {
             var limitationCountResult = _context.Management.Where(x => x.Name == "limitationDays").FirstOrDefault();
@@ -45,6 +43,18 @@ namespace LabM.Controllers
             _context.SaveChanges();
             //return RedirectToAction(nameof(Index),"Requests" );
             return View(limitationDays);
+        }
+        public async Task<IActionResult> AddUserToRole(string email, string roleSelected)
+        {
+            try
+            {
+                var userName = await _userManager.FindByEmailAsync(email);
+                await _userManager.AddToRoleAsync(userName, roleSelected);
+                return View("AddUserToRole", "Added successfuly");
+            } catch (Exception ex)
+            {
+                return View("AddUserToRole", "Added Not valiation");
+            }
         }
     }
 }
