@@ -1,9 +1,38 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @model IEnumerable<LabM.Models.Request>
 @{
+    //var vvvvvv = ViewBag.UserRoleCheck;
 }
-<a class="btn btn-info text-white" asp-controller="Managements" asp-action="Edit">System Config</a>
-<form method="get" asp-action="index">
+@*@if (@ViewData["Checkk"] == "True")
+{
+    <a class="btn btn-info text-white" asp-controller="Managements" asp-action="Edit">System Config</a>
+}*@
+
+@if (User.IsInRole("Admin"))
+{
+    <a class="btn btn-info text-white" asp-controller="Managements" asp-action="Edit">System Config</a>
+}
+<div class="row mt-3">
+    <h5 class="rounded text-center text-white p-2 bg-info">Request List</h5>
+</div>
+<form asp-action="Index" method="get">
+    <div class="row p-3 my-2 border">
+        <div class="col-2 ">
+            <select name="searchSelected" class="form-select">
+                <option>All</option>
+                <option>StudentsStatus</option>
+                <option>College</option>
+            </select>
+        </div>
+        <div class="col-2 ">
+            <input name="searchString" type="text" class="form-control" />
+        </div>
+        <div class="col-2 ">
+            <input type="submit" value="filter" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+@*<form method="get" asp-action="index">
     <div class="row mt-3">
         <h5 class="rounded text-center text-white p-2 bg-info">Request List</h5>
     </div>
@@ -44,7 +73,7 @@
             <p class="text-danger">Extract all or as per search results</p>
         </div>
     </div>
-</form>
+</form>*@
 <table class="table">
     <thead>
         <tr>

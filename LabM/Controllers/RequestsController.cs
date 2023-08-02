@@ -4,33 +4,67 @@ using LabM.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
+using System.Net.Mail;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
+using Microsoft.AspNetCore.Identity;
 
 namespace LabM.Controllers
 {
     public class RequestsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        public RequestsController(ApplicationDbContext context)
+        private readonly UserManager<IdentityUser> _userManager;
+        public RequestsController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
         [Authorize(Roles = "Admin, Recep")]
-        public async Task< IActionResult> Index(string? college, string? studentsStatus)
+
+        //public async Task< IActionResult> Index(string? college, string? studentsStatus)
+        //{
+        //        //var userName = await _userManager.FindByEmailAsync("khaled@qumc.edu.sa");
+        //        //ViewData["Checkk"] = "False";
+        //        //if (await _userManager.IsInRoleAsync(userName, "Admin"))
+        //        //{
+        //        //    ViewData["Checkk"] = "True";
+        //        //}
+        //    if (!string.IsNullOrEmpty(college) && !string.IsNullOrEmpty(studentsStatus))
+        //    {
+        //        return View(await _context.Request.Where(r => r.College == college && r.StudentsStatus == studentsStatus).ToListAsync());
+        //    }
+        //    else if (!string.IsNullOrEmpty(college) || !string.IsNullOrEmpty(studentsStatus))
+        //    {
+        //        return View(await _context.Request.Where(r => r.College == college || r.StudentsStatus == studentsStatus).ToListAsync());
+        //    }
+        //    else
+        //    {
+        //        return _context.Request != null ?
+        //                    View(await _context.Request.ToListAsync()) :
+        //                    Problem("Entity set 'ApplicationDbContext.Requests'  is null.");
+        //    }
+        //}
+        public async Task<IActionResult> Index(string searchSelected, string searchString)
         {
-            if (!string.IsNullOrEmpty(college) && !string.IsNullOrEmpty(studentsStatus))
+            if (_context.Request == null)
             {
-                return View(await _context.Request.Where(r => r.College == college && r.StudentsStatus == studentsStatus).ToListAsync());
+                return NotFound("Request Is Null");
             }
-            else if (!string.IsNullOrEmpty(college) || !string.IsNullOrEmpty(studentsStatus))
+            var request = from m in _context.Request
+                          select m;
+            if (!String.IsNullOrEmpty(searchString))
             {
-                return View(await _context.Request.Where(r => r.College == college || r.StudentsStatus == studentsStatus).ToListAsync());
+                if (searchSelected == "College")
+                {
+                    request = request.Where(x => x.College.Contains(searchString));
+                }
+                else if (searchSelected == "StudentsStatus")
+                {
+                    request = request.Where(x => x.StudentsStatus.Contains(searchString));
+                }
             }
-            else
-            {
-                return _context.Request != null ?
-                            View(await _context.Request.ToListAsync()) :
-                            Problem("Entity set 'ApplicationDbContext.Requests'  is null.");
-            }
+            return View(await request.ToListAsync());
+
         }
         //GET
         public IActionResult Create()
@@ -46,7 +80,7 @@ namespace LabM.Controllers
             List<DateTime> avilableDates = new List<DateTime>();
             for (var date = DateTime.Now; date <= dateTo; date = date.AddDays(1))
             {
-                if(date.DayOfWeek.ToString() == "Friday" ||  date.DayOfWeek.ToString() == "Saturday")
+                if (date.DayOfWeek.ToString() == "Friday" || date.DayOfWeek.ToString() == "Saturday")
                 {
                     continue;
                 }
@@ -55,7 +89,7 @@ namespace LabM.Controllers
                 {
                     continue;
                 }
-                 avilableDates.Add(date);
+                avilableDates.Add(date);
             }
             ViewBag.AvilableDates = avilableDates;
             return View();
@@ -73,7 +107,7 @@ namespace LabM.Controllers
             }
             var limitDays = managemnt.Value;
             var requestsCount = _context.Request.Where(x => x.Date == request.Date).Count();
-            if(requestsCount >= limitDays)
+            if (requestsCount >= limitDays)
             {
                 ViewBag.ErrorMessage = "Sorry, The Limit Of Request For This Day Is Reached";
                 return View();

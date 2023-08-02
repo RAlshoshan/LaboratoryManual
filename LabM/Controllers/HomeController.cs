@@ -37,7 +37,6 @@ namespace LabM.Controllers
             var khaled = await _userManager.FindByNameAsync("khaled@qumc.edu.sa");
             await _userManager.AddToRoleAsync(khaled, "Test2");
             return View("index", "user added successfuly");
-
         }
 
         public IActionResult Index()

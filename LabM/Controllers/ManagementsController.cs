@@ -11,7 +11,7 @@ namespace LabM.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
-       // private readonly RoleManager<IdentityRole> _roleManager;
+        // private readonly RoleManager<IdentityRole> _roleManager;
         public ManagementsController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
@@ -51,7 +51,8 @@ namespace LabM.Controllers
                 var userName = await _userManager.FindByEmailAsync(email);
                 await _userManager.AddToRoleAsync(userName, roleSelected);
                 return View("AddUserToRole", "Added successfuly");
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return View("AddUserToRole", "Added Not valiation");
             }
