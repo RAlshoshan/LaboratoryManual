@@ -114,7 +114,7 @@ namespace LabM.Controllers
             if (managemnt is null)
             {
                 ViewBag.ErrorMessage = "You Need To Set The Limit In Management";
-                return View();
+                return View(studentCollegeVM);
             }
             var limitDays = managemnt.Value;
             var requestsCount = _context.Request.Where(x => x.Date == request.Date).Count();

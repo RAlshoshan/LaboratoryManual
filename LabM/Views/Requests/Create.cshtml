@@ -135,7 +135,7 @@
 @*            <label asp-for="Date" class="control-label"></label>
             <input asp-for="Date" class="form-control" />
             <span asp-validation-for="Date" class="text-danger"></span>*@
-            <select class="form-control" name="Date">
+            <select class="form-control" asp-for="Request.Date">
                 @if (ViewBag.AvilableDates is not null)
                 {
                     var avilableDates = (List<DateTime>)ViewBag.AvilableDates;
