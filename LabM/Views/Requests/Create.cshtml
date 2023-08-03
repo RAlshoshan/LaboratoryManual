@@ -1,4 +1,4 @@
-﻿@model LabM.Models.Request
+﻿@model LabM.Models.StudentCollegeVM
 @{
 }
 @if(ViewBag.ErrorMessage is not null)
@@ -14,27 +14,31 @@
     <div class="row">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group col">
-            <label asp-for="NationalOrResidenceId" class="control-label"></label>
-            <input asp-for="NationalOrResidenceId" class="form-control" />
-            <span asp-validation-for="NationalOrResidenceId" class="text-danger"></span>
+            <label asp-for="Request.NationalOrResidenceId" class="control-label"></label>
+            <input asp-for="Request.NationalOrResidenceId" class="form-control" />
+            <span asp-validation-for="Request.NationalOrResidenceId" class="text-danger"></span>
         </div>
         <div class="form-group col">
-            <label asp-for="UniversityNumber" class="control-label"></label>
-            <input asp-for="UniversityNumber" class="form-control" />
-            <span asp-validation-for="UniversityNumber" class="text-danger"></span>
+            <label asp-for="Request.UniversityNumber" class="control-label"></label>
+            <input asp-for="Request.UniversityNumber" class="form-control" />
+            <span asp-validation-for="Request.UniversityNumber" class="text-danger"></span>
         </div>
         <div class="form-group col">
-            <label asp-for="StudentsStatus" class="control-label"></label>
-            <select asp-for="StudentsStatus" class="form-select">
+            <label asp-for="Request.StudentsStatus" class="control-label"></label>
+            <select asp-for="Request.StudentsStatus" class="form-select">
                 <option>select</option>
                 <option value="NewStudent">New Student</option>
                 <option value="Intern">Intern</option>
             </select>
-            <span asp-validation-for="StudentsStatus" class="text-danger"></span>
+            <span asp-validation-for="Request.StudentsStatus" class="text-danger"></span>
         </div>
         <div class="form-group col">
-            <label asp-for="College" class="control-label"></label>
-            <select asp-for="College" class="form-select">
+            <label asp-for="Request.College" class="control-label"></label>
+                <select asp-for="Request.College" asp-items="@Model.CollegeSelectList">
+                    <option></option>
+                </select>
+            
+            @*<select class="form-select">
                 <option></option>
                 <option>الطب البشري ( المقر الرئيسي)</option>
                 <option>الطب والعلوم الطبية ( القطاع الجنوبي )</option>
@@ -49,74 +53,74 @@
                 <option>العلوم الصحية</option>
                 <option>الصحة العامة والمعلوماتية</option>
                 <option>كلية الزراعة</option>
-            </select>
-            <span asp-validation-for="College" class="text-danger"></span>
+            </select>*@
+            <span asp-validation-for="Request.College" class="text-danger"></span>
         </div>
     </div>
     <div class="row">
         <div class="form-group col">
-            <label asp-for="FirstNameEnglish" class="control-label"></label>
-            <input asp-for="FirstNameEnglish" class="form-control" />
-            <span asp-validation-for="FirstNameEnglish" class="text-danger"></span>
+            <label asp-for="Request.FirstNameEnglish" class="control-label"></label>
+            <input asp-for="Request.FirstNameEnglish" class="form-control" />
+            <span asp-validation-for="Request.FirstNameEnglish" class="text-danger"></span>
         </div>
         <div class="form-group col">
-            <label asp-for="FatherNameEnglish" class="control-label"></label>
-            <input asp-for="FatherNameEnglish" class="form-control" />
-            <span asp-validation-for="FatherNameEnglish" class="text-danger"></span>
+            <label asp-for="Request.FatherNameEnglish" class="control-label"></label>
+            <input asp-for="Request.FatherNameEnglish" class="form-control" />
+            <span asp-validation-for="Request.FatherNameEnglish" class="text-danger"></span>
         </div>
         <div class="form-group col">
-            <label asp-for="GrandFatherNameEnglish" class="control-label"></label>
-            <input asp-for="GrandFatherNameEnglish" class="form-control" />
-            <span asp-validation-for="GrandFatherNameEnglish" class="text-danger"></span>
+            <label asp-for="Request.GrandFatherNameEnglish" class="control-label"></label>
+            <input asp-for="Request.GrandFatherNameEnglish" class="form-control" />
+            <span asp-validation-for="Request.GrandFatherNameEnglish" class="text-danger"></span>
         </div>
         <div class="form-group col">
-            <label asp-for="FamilyNameEnglish" class="control-label"></label>
-            <input asp-for="FamilyNameEnglish" class="form-control" />
-            <span asp-validation-for="FamilyNameEnglish" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="form-group col">
-            <label asp-for="FirstNameArabic" class="control-label"></label>
-            <input asp-for="FirstNameArabic" class="form-control" />
-            <span asp-validation-for="FirstNameArabic" class="text-danger"></span>
-        </div>
-        <div class="form-group col">
-            <label asp-for="FatherNameArabic" class="control-label"></label>
-            <input asp-for="FatherNameArabic" class="form-control" />
-            <span asp-validation-for="FatherNameArabic" class="text-danger"></span>
-        </div>
-        <div class="form-group col">
-            <label asp-for="GrandFatherNameArabic" class="control-label"></label>
-            <input asp-for="GrandFatherNameArabic" class="form-control" />
-            <span asp-validation-for="GrandFatherNameArabic" class="text-danger"></span>
-        </div>
-        <div class="form-group col">
-            <label asp-for="FamilyNameArabic" class="control-label"></label>
-            <input asp-for="FamilyNameArabic" class="form-control" />
-            <span asp-validation-for="FamilyNameArabic" class="text-danger"></span>
+            <label asp-for="Request.FamilyNameEnglish" class="control-label"></label>
+            <input asp-for="Request.FamilyNameEnglish" class="form-control" />
+            <span asp-validation-for="Request.FamilyNameEnglish" class="text-danger"></span>
         </div>
     </div>
     <div class="row">
         <div class="form-group col">
-            <label asp-for="Email" class="control-label"></label>
-            <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
+            <label asp-for="Request.FirstNameArabic" class="control-label"></label>
+            <input asp-for="Request.FirstNameArabic" class="form-control" />
+            <span asp-validation-for="Request.FirstNameArabic" class="text-danger"></span>
         </div>
         <div class="form-group col">
-            <label asp-for="PhoneNo" class="control-label"></label>
-            <input asp-for="PhoneNo" class="form-control" placeholder="05xxxxxxxx"/>
-            <span asp-validation-for="PhoneNo" class="text-danger"></span>
+            <label asp-for="Request.FatherNameArabic" class="control-label"></label>
+            <input asp-for="Request.FatherNameArabic" class="form-control" />
+            <span asp-validation-for="Request.FatherNameArabic" class="text-danger"></span>
         </div>
         <div class="form-group col">
-            <label asp-for="BirthDate" class="control-label"></label>
-            <input asp-for="BirthDate" class="form-control" />
-            <span asp-validation-for="BirthDate" class="text-danger"></span>
+            <label asp-for="Request.GrandFatherNameArabic" class="control-label"></label>
+            <input asp-for="Request.GrandFatherNameArabic" class="form-control" />
+            <span asp-validation-for="Request.GrandFatherNameArabic" class="text-danger"></span>
         </div>
         <div class="form-group col">
-            <label asp-for="MedicalFileNo" class="control-label"></label>
-            <input asp-for="MedicalFileNo" class="form-control" />
-            <span asp-validation-for="MedicalFileNo" class="text-danger"></span>
+            <label asp-for="Request.FamilyNameArabic" class="control-label"></label>
+            <input asp-for="Request.FamilyNameArabic" class="form-control" />
+            <span asp-validation-for="Request.FamilyNameArabic" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col">
+            <label asp-for="Request.Email" class="control-label"></label>
+            <input asp-for="Request.Email" class="form-control" />
+            <span asp-validation-for="Request.Email" class="text-danger"></span>
+        </div>
+        <div class="form-group col">
+            <label asp-for="Request.PhoneNo" class="control-label"></label>
+            <input asp-for="Request.PhoneNo" class="form-control" placeholder="05xxxxxxxx" />
+            <span asp-validation-for="Request.PhoneNo" class="text-danger"></span>
+        </div>
+        <div class="form-group col">
+            <label asp-for="Request.BirthDate" class="control-label"></label>
+            <input asp-for="Request.BirthDate" class="form-control" />
+            <span asp-validation-for="Request.BirthDate" class="text-danger"></span>
+        </div>
+        <div class="form-group col">
+            <label asp-for="Request.MedicalFileNo" class="control-label"></label>
+            <input asp-for="Request.MedicalFileNo" class="form-control" />
+            <span asp-validation-for="Request.MedicalFileNo" class="text-danger"></span>
         </div>
     </div>
     <div class="row mt-3">

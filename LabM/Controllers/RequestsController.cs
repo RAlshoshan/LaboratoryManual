@@ -7,6 +7,8 @@ using System.Data;
 using System.Net.Mail;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using ClosedXML.Excel;
 
 namespace LabM.Controllers
 {
@@ -69,6 +71,11 @@ namespace LabM.Controllers
         //GET
         public IActionResult Create()
         {
+            StudentCollegeVM studentCollegeVM = new StudentCollegeVM();
+            var colleges = _context.College.ToList();
+            studentCollegeVM.CollegeSelectList = new SelectList(colleges, "Name", "Name");
+
+
             var managemnt = _context.Management.Where(x => x.Name == "limitationDays").FirstOrDefault();
             if (managemnt is null)
             {
@@ -92,13 +99,17 @@ namespace LabM.Controllers
                 avilableDates.Add(date);
             }
             ViewBag.AvilableDates = avilableDates;
-            return View();
+            return View(studentCollegeVM);
         }
         // POST
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,NationalOrResidenceId,UniversityNumber,StudentsStatus,College,FirstNameEnglish,FatherNameEnglish,GrandFatherNameEnglish,FamilyNameEnglish,FirstNameArabic,FatherNameArabic,GrandFatherNameArabic,FamilyNameArabic,Email,PhoneNo,BirthDate,MedicalFileNo,Date")] Request request)
         {
+            StudentCollegeVM studentCollegeVM = new StudentCollegeVM();
+            studentCollegeVM.Request = request;
+            var colleges = _context.College.ToList();
+            studentCollegeVM.CollegeSelectList = new SelectList(colleges, "Name", "Name");
             var managemnt = _context.Management.Where(x => x.Name == "limitationDays").FirstOrDefault();
             if (managemnt is null)
             {
@@ -110,7 +121,7 @@ namespace LabM.Controllers
             if (requestsCount >= limitDays)
             {
                 ViewBag.ErrorMessage = "Sorry, The Limit Of Request For This Day Is Reached";
-                return View();
+                return View(studentCollegeVM);
             }
             if (ModelState.IsValid)
             {
@@ -119,7 +130,7 @@ namespace LabM.Controllers
                 return RedirectToAction("Message");
                 //return View("Message");
             }
-            return View(request);
+            return View(studentCollegeVM);
         }
         public IActionResult Message()
         {
@@ -138,6 +149,44 @@ namespace LabM.Controllers
                 return NotFound();
             }
             return View(request);
+        }
+        [HttpGet]
+        public async Task<FileResult> ExportStudentInExcel()
+        {
+            var students = await _context.Request.ToListAsync();
+            var fileName = "Requests.xlsx";
+            return GenersteExcel(fileName, students);
+        }
+        public FileResult GenersteExcel(string fileName, IEnumerable<Request> requests)
+        {
+            DataTable dataTable = new DataTable("Requests");
+            dataTable.Columns.AddRange(new DataColumn[]
+            {
+                new DataColumn("Id"),
+                new DataColumn("Name"),
+                new DataColumn("NationalOrResidenceId"),
+                new DataColumn("UniversityNumber"),
+                new DataColumn("StudentsStatus"),
+                new DataColumn("College"),
+                new DataColumn("FirstNameEnglish"),
+                new DataColumn("Date")
+            });
+            foreach (var request in requests)
+            {
+                dataTable.Rows.Add(request.Id, request.FirstNameEnglish,request.NationalOrResidenceId, request.UniversityNumber, request.StudentsStatus, request.College, request.FirstNameEnglish, request.Date);
+                // request.FamilyNameEnglish, request.PhoneNo, request.Email, request.College, request.Date
+            }
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dataTable);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(),
+                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        fileName);
+                }
+            }
         }
     }
 }
