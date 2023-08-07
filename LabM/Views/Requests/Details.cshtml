@@ -2,111 +2,158 @@
 @{
     ViewData["Title"] = "Details";
 }
-<h1>Details</h1>
 <div>
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.NationalOrResidenceId)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NationalOrResidenceId)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.UniversityNumber)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.UniversityNumber)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.StudentsStatus)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.StudentsStatus)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.College)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.College)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstNameEnglish)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FirstNameEnglish)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FatherNameEnglish)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FatherNameEnglish)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.GrandFatherNameEnglish)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.GrandFatherNameEnglish)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FamilyNameEnglish)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FamilyNameEnglish)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstNameArabic)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FirstNameArabic)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FatherNameArabic)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FatherNameArabic)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.GrandFatherNameArabic)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.GrandFatherNameArabic)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FamilyNameArabic)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FamilyNameArabic)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PhoneNo)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PhoneNo)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BirthDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.MedicalFileNo)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.MedicalFileNo)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-    </dl>
+    <h5 class="rounded text-center text-white p-2 bg-info" data-i18n="textTitle1">Details</h5>
 </div>
-<a asp-action="Index">Back to List</a>
+<div class="form-group col">
+    <div>
+        <dl>
+            <div class="row">
+                <div class="form-group col">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.NationalOrResidenceId)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.NationalOrResidenceId)
+                    </dd>
+                </div>
+                <div class="form-group col">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.UniversityNumber)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.UniversityNumber)
+                    </dd>
+                </div>
+                <div class="form-group col">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.StudentsStatus)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.StudentsStatus)
+                    </dd>
+                </div>
+                <div class="form-group col">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.College)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.College)
+                    </dd>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FirstNameEnglish)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.FirstNameEnglish)
+                    </dd>
+                </div>
+                <div class="form-group col">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FatherNameEnglish)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.FatherNameEnglish)
+                    </dd>
+                </div>
+                <div class="form-group col">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.GrandFatherNameEnglish)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.GrandFatherNameEnglish)
+                    </dd>
+                </div>
+                <div class="form-group col">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FamilyNameEnglish)
+                    </dt>
+                    <dd class="btn">
+                        @Html.DisplayFor(model => model.FamilyNameEnglish)
+                    </dd>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FirstNameArabic)
+                    </dt>
+                    <dd class="btn btn-light">
+                        @Html.DisplayFor(model => model.FirstNameArabic)
+                    </dd>
+                </div>
+                <div class="form-group col">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FatherNameArabic)
+                    </dt>
+                    <dd class="btn">
+                        @Html.DisplayFor(model => model.FatherNameArabic)
+                    </dd>
+                </div>
+                <div class="form-group col">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.GrandFatherNameArabic)
+                    </dt>
+                    <dd class="btn">
+                        @Html.DisplayFor(model => model.GrandFatherNameArabic)
+                    </dd>
+                </div>
+                <div class="form-group col">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FamilyNameArabic)
+                    </dt>
+                    <dd class="btn">
+                        @Html.DisplayFor(model => model.FamilyNameArabic)
+                    </dd>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+                </div>
+                <div class="form-group col">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PhoneNo)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.PhoneNo)
+                    </dd>
+                </div>
+                <div class="form-group col">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.BirthDate)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.BirthDate)
+                    </dd>
+                </div>
+                <div class="form-group col">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MedicalFileNo)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.MedicalFileNo)
+                    </dd>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Date)
+                    </dd>
+                </div>
+            </div>
+        </dl>
+    </div>
+    <a asp-action="Index">Back to List</a>
