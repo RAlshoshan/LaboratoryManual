@@ -98,13 +98,13 @@ namespace LabM.Controllers
                 }
                 avilableDates.Add(date);
             }
-            ViewBag.AvilableDates = avilableDates;
+            studentCollegeVM.AvilableDates = avilableDates;
             return View(studentCollegeVM);
         }
         // POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NationalOrResidenceId,UniversityNumber,StudentsStatus,College,FirstNameEnglish,FatherNameEnglish,GrandFatherNameEnglish,FamilyNameEnglish,FirstNameArabic,FatherNameArabic,GrandFatherNameArabic,FamilyNameArabic,Email,PhoneNo,BirthDate,MedicalFileNo,Date")] Request request)
+        public async Task<IActionResult> Create([Bind("Id,NationalOrResidenceId,UniversityNumber,StudentsStatus,College,FirstNameEnglish,FatherNameEnglish,GrandFatherNameEnglish,FamilyNameEnglish,FirstNameArabic,FatherNameArabic,GrandFatherNameArabic,FamilyNameArabic,Email,PhoneNo,BirthDate,MedicalFileNo,Date")] Request request, IFormFile ResidenceIdName, IFormFile StudentIdName)
         {
             StudentCollegeVM studentCollegeVM = new StudentCollegeVM();
             studentCollegeVM.Request = request;
@@ -123,8 +123,29 @@ namespace LabM.Controllers
                 ViewBag.ErrorMessage = "Sorry, The Limit Of Request For This Day Is Reached";
                 return View(studentCollegeVM);
             }
+            var residenceIdNameFile = Guid.NewGuid().ToString() + ".jpg";
+            var studentIdNameFile = Guid.NewGuid().ToString() + ".jpg";
+
+            var residenceIdFullPath = System.IO.Path.Combine(
+                System.IO.Directory.GetCurrentDirectory(), "wwwroot", "UploadedFiles", residenceIdNameFile);
+            var studentIdFullPath = System.IO.Path.Combine(
+                System.IO.Directory.GetCurrentDirectory(), "wwwroot", "UploadedFiles", studentIdNameFile);
+
+            using (var stream = new System.IO.FileStream(residenceIdFullPath, System.IO.FileMode.Create))
+            {
+                await ResidenceIdName.CopyToAsync(stream);
+            }
+            using (var stream = new System.IO.FileStream(studentIdFullPath, System.IO.FileMode.Create))
+            {
+                await StudentIdName.CopyToAsync(stream);
+            }
+            request.ResidenceIdName = residenceIdNameFile;
+            request.StudentIdName = studentIdNameFile;
+
+
             if (ModelState.IsValid)
             {
+
                 _context.Add(request);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Message");
@@ -173,7 +194,7 @@ namespace LabM.Controllers
             });
             foreach (var request in requests)
             {
-                dataTable.Rows.Add(request.Id, request.FirstNameEnglish,request.NationalOrResidenceId, request.UniversityNumber, request.StudentsStatus, request.College, request.FirstNameEnglish, request.Date);
+                dataTable.Rows.Add(request.Id, request.FirstNameEnglish, request.NationalOrResidenceId, request.UniversityNumber, request.StudentsStatus, request.College, request.FirstNameEnglish, request.Date);
                 // request.FamilyNameEnglish, request.PhoneNo, request.Email, request.College, request.Date
             }
             using (XLWorkbook wb = new XLWorkbook())

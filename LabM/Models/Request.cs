@@ -37,5 +37,7 @@ namespace LabM.Models
         // Date Schedule
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
+        public string? ResidenceIdName { get; set; }
+        public string? StudentIdName { get; set; }
     }
 }
