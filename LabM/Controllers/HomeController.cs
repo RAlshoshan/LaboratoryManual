@@ -1,6 +1,7 @@
 ﻿using LabM.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -17,6 +18,26 @@ namespace LabM.Controllers
             _logger = logger;
             _userManager = userManager;
             _roleManager = roleManager;
+        }
+        public IActionResult Index(string lang = "en")
+        {
+            if (lang == "en")
+            {
+                Response.Cookies.Append(
+                    CookieRequestCultureProvider.DefaultCookieName,
+                    CookieRequestCultureProvider.MakeCookieValue(new RequestCulture("en-US")),
+                    new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+                    );
+            }
+            else
+            {
+                Response.Cookies.Append(
+                    CookieRequestCultureProvider.DefaultCookieName,
+                    CookieRequestCultureProvider.MakeCookieValue(new RequestCulture("ar-SA")),
+                    new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+                );
+            }
+            return View();
         }
         public async Task<IActionResult> CreateRoles()
         {
@@ -39,10 +60,10 @@ namespace LabM.Controllers
             return View("index", "user added successfuly");
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
 
         public IActionResult Privacy()
         {
