@@ -8,7 +8,7 @@
 <div class="form-group col">
     <div>
         <dl>
-            <div class="row">
+            <div class="row my-1">
                 <div class="form-group col">
                     <dt>
                         @Html.DisplayNameFor(model => model.NationalOrResidenceId)
@@ -42,7 +42,7 @@
                     </dd>
                 </div>
             </div>
-            <div class="row">
+            <div class="row my-1">
                 <div class="form-group col">
                     <dt>
                         @Html.DisplayNameFor(model => model.FirstNameEnglish)
@@ -71,17 +71,17 @@
                     <dt>
                         @Html.DisplayNameFor(model => model.FamilyNameEnglish)
                     </dt>
-                    <dd class="btn">
+                    <dd>
                         @Html.DisplayFor(model => model.FamilyNameEnglish)
                     </dd>
                 </div>
             </div>
-            <div class="row">
+            <div class="row my-1">
                 <div class="form-group col">
                     <dt>
                         @Html.DisplayNameFor(model => model.FirstNameArabic)
                     </dt>
-                    <dd class="btn btn-light">
+                    <dd>
                         @Html.DisplayFor(model => model.FirstNameArabic)
                     </dd>
                 </div>
@@ -89,7 +89,7 @@
                     <dt>
                         @Html.DisplayNameFor(model => model.FatherNameArabic)
                     </dt>
-                    <dd class="btn">
+                    <dd>
                         @Html.DisplayFor(model => model.FatherNameArabic)
                     </dd>
                 </div>
@@ -97,7 +97,7 @@
                     <dt>
                         @Html.DisplayNameFor(model => model.GrandFatherNameArabic)
                     </dt>
-                    <dd class="btn">
+                    <dd>
                         @Html.DisplayFor(model => model.GrandFatherNameArabic)
                     </dd>
                 </div>
@@ -105,12 +105,12 @@
                     <dt>
                         @Html.DisplayNameFor(model => model.FamilyNameArabic)
                     </dt>
-                    <dd class="btn">
+                    <dd>
                         @Html.DisplayFor(model => model.FamilyNameArabic)
                     </dd>
                 </div>
             </div>
-            <div class="row">
+            <div class="row my-1">
                 <div class="form-group col">
                     <dt>
                         @Html.DisplayNameFor(model => model.Email)
@@ -144,13 +144,33 @@
                     </dd>
                 </div>
             </div>
-            <div class="row">
+            <div class="row my-1">
                 <div class="form-group col">
                     <dt>
                         @Html.DisplayNameFor(model => model.Date)
                     </dt>
                     <dd>
                         @Html.DisplayFor(model => model.Date)
+                    </dd>
+                </div>
+            </div>
+            <div class="row my-1">
+                <div class="form-group col">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ResidenceIdName)
+                    </dt>
+                    <dd>
+                        <img src="~/UploadedFiles/@Model.ResidenceIdName" width="400" />
+                        @*@Html.DisplayFor(model => model.Date)*@
+                    </dd>
+                </div>
+                <div class="form-group col">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.StudentIdName)
+                    </dt>
+                    <dd>
+                        <img src="~/UploadedFiles/@Model.StudentIdName" width="400" />
+                        @*@Html.DisplayFor(model => model.Date)*@
                     </dd>
                 </div>
             </div>

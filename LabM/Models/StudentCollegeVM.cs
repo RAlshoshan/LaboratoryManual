@@ -6,5 +6,6 @@ namespace LabM.Models
     {
         public Request Request { get; set; }
         public SelectList CollegeSelectList { get; set; }
+        public List<DateTime> AvilableDates { get; set;}
     }
 }
